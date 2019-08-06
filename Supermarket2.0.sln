@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29025.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.API", "Supermarket.API\Supermarket.API.csproj", "{2302EAE3-8099-46D3-9F5C-90415FE0D432}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2C7A9D86-9FB4-46AC-BB66-86EFD2154A8E}"
+	ProjectSection(SolutionItems) = preProject
+		READ.md = READ.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Supermarket.Common", "Supermarket.Common\Supermarket.Common.csproj", "{9732AC53-D2AE-4DE9-9934-448E8827B6BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2302EAE3-8099-46D3-9F5C-90415FE0D432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2302EAE3-8099-46D3-9F5C-90415FE0D432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2302EAE3-8099-46D3-9F5C-90415FE0D432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2302EAE3-8099-46D3-9F5C-90415FE0D432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9732AC53-D2AE-4DE9-9934-448E8827B6BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9732AC53-D2AE-4DE9-9934-448E8827B6BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9732AC53-D2AE-4DE9-9934-448E8827B6BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9732AC53-D2AE-4DE9-9934-448E8827B6BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6DBB1F97-3FEA-4934-98C5-C4357F83F46F}
+	EndGlobalSection
+EndGlobal
