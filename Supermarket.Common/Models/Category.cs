@@ -7,9 +7,14 @@ namespace Supermarket.Common.Models
     [Table("Categories")]
     public class Category
     {
+        public Category()
+        {
+            Products = new List<Product>();
+        }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get;set; }
-        public IList<Product> Products { get; set; } = new List<Product>();
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

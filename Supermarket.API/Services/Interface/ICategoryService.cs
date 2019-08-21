@@ -11,5 +11,7 @@ namespace Supermarket.API.Services.Interface
         Task<IList<CategoryDTO>> GetCategories();
         Task CreateCategory(CategoryBindingModel categoryBinding);
         Task<CategoryDTO> GetCategoryById(Guid categoryId);
+        Task DeleteCategory(Guid categoryId);
+        Task UpdateCategory(Guid categoryId, CategoryBindingModel category);
     }
 }
