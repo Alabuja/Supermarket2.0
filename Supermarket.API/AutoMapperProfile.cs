@@ -28,6 +28,13 @@ namespace Supermarket.API
                         dest.Products = Mapper.Map<List<ProductDTO>>(src.Products);
                     });
 
+                cfg.CreateMap<Product, ProductDTO>()
+                   .ForMember(g => g.Category, opt => opt.Ignore())
+                   .AfterMap((src, dest) =>
+                   {
+                       dest.Category = Mapper.Map<CategoryDTO>(src.Category);
+                   });
+
             });
         }
     }

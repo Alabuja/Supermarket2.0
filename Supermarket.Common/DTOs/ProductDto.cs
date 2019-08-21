@@ -8,6 +8,6 @@ namespace Supermarket.Common.DTOs
         public string Name { get; set; }
         public int QuantityInStock { get; set; }
         public EUnitOfMeasurement UnitOfMeasurement { get; set; }
-        public string CategoryName{ get; set; }
+        public CategoryDTO Category{ get; set; }
     }
 }
