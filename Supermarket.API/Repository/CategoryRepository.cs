@@ -1,10 +1,11 @@
-﻿using Supermarket.API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using Supermarket.API.Data;
 using Supermarket.API.Repository.Interface;
 using Supermarket.Common.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace Supermarket.API.Repository
 {
@@ -15,18 +16,16 @@ namespace Supermarket.API.Repository
 
         }
 
-        public IQueryable<Category> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
-            var categories = _context.Categories.Where(p => p.IsDeleted != true);
+            var categories = await _context.Categories.Where(p => p.IsDeleted != true).ToListAsync();
 
-            categories = categories.AsQueryable();
-            
             return categories;
         }
 
         public async Task<Category> GetCategoryById(Guid categoryId)
         {
-            var category = await _context.Categories.FindAsync(categoryId);
+            var category = await GetCategory(categoryId);
 
             return category;
         }
@@ -38,15 +37,26 @@ namespace Supermarket.API.Repository
 
         public async Task DeleteCategory(Guid categoryId)
         {
-            var category = await _context.Categories.FirstOrDefaultAsync(p => p.Id == categoryId);
+            var category = await GetCategory(categoryId);
 
             category.IsDeleted = true;
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateCategory(Guid categoryId, Category category)
+        public async Task UpdateCategory(Guid categoryId, Category categoryModel)
         {
+            var category = await GetCategory(categoryId);
+            
+            category.Name = categoryModel.Name;
+
             await _context.SaveChangesAsync();
+        }
+
+
+        private async Task<Category> GetCategory(Guid categoryId)
+        {
+            var category = await _context.Categories.FirstOrDefaultAsync(p => p.Id == categoryId);
+            return category;
         }
     }
 }

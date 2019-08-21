@@ -1,13 +1,13 @@
 ﻿using Supermarket.Common.Models;
-using System.Linq;
-using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Supermarket.API.Repository.Interface
 {
     public interface ICategoryRepository
     {
-        IQueryable<Category> GetCategories();
+        Task<IEnumerable<Category>> GetCategories();
         Task<Category> GetCategoryById(Guid categoryId);
         Task CreateCategory(Category category);
         Task DeleteCategory(Guid categoryId);
