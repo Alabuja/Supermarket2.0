@@ -7,8 +7,10 @@ namespace Supermarket.API.Repository.Interface
 {
     public interface ICategoryRepository
     {
-        Task<IQueryable<Category>> GetCategories();
+        IQueryable<Category> GetCategories();
         Task<Category> GetCategoryById(Guid categoryId);
         Task CreateCategory(Category category);
+        Task DeleteCategory(Guid categoryId);
+        Task UpdateCategory(Guid categoryId, Category category);
     }
 }

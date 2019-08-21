@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Supermarket.Common.Models
 {
+    [Table("Products")]
     public class Product
     {
         public Guid Id { get; set; }

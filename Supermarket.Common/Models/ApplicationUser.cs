@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
 
 namespace Supermarket.Common.Models
 {
+    [Table("Users")]
     public class ApplicationUser : IdentityUser<Guid>
     {
         public string FullName { get; set; }
