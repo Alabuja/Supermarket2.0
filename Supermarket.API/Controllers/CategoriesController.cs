@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Supermarket.API.Services.Interface;
+using Supermarket.Common.BindingModel;
 using Supermarket.Common.DTOs;
 using Supermarket.Common.Helpers;
-using Supermarket.Common.BindingModel;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -82,9 +82,15 @@ namespace Supermarket.API.Controllers
         {
             var category = _categoryService.GetCategoryById(categoryId);
 
-            if(categoriesBindingModel.IsNull()) return BadRequest("Category Fields cannot be empty");
+            if(categoriesBindingModel.IsNull())
+            {
+                return BadRequest("Category Fields cannot be empty");
+            }
 
-            if(category.IsNull()) return NotFound("Category not found");
+            if (category.IsNull())
+            {
+                return NotFound("Category not found");
+            }
 
             await _categoryService.UpdateCategory(categoryId, categoriesBindingModel);
 
@@ -104,7 +110,7 @@ namespace Supermarket.API.Controllers
         {
             var category = _categoryService.GetCategoryById(categoryId);
 
-            if(category.IsNull()) return NotFound("Category not found");
+            if (category.IsNull()) return NotFound("Category not found");
 
             await _categoryService.DeleteCategory(categoryId);
 
