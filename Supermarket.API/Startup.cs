@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Supermarket.API.Data;
 using Supermarket.API.Repository;
 using Supermarket.API.Repository.Interface;
 using Supermarket.API.Services;
 using Supermarket.API.Services.Interface;
+using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Reflection;
 
 namespace Supermarket.API
 {
@@ -40,6 +37,22 @@ namespace Supermarket.API
             services.AddAutoMapper();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSwaggerGen(p => 
+            {
+                p.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Supermarket API",
+                    Description = "API for a Supermarket Store",
+                    TermsOfService = "None",
+                    Contact = new Contact(){ Name = "Daniel Alabuja", Email= "alabujadaniel@gmail.com", Url = "https://alabujadaniel.com" }
+                });
+
+                var xmlFile = $"{ Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                p.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,6 +69,17 @@ namespace Supermarket.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors("vSupermarketPolicy");
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "vSupermarket API v1.0");
+            });
+
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
